@@ -9,6 +9,7 @@ from langchain_community.llms import Together
 from langchain_community.document_loaders import UnstructuredPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
+import cv2
 
 os.environ["TOGETHER_API_KEY"] = "ee454dd5ff4e46d1ee8bf44fa387a44dd2ded119a65b933883beb6b7736c07bb"
 
