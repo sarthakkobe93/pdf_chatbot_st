@@ -66,7 +66,7 @@ def load_documents(path):
             filepath = os.path.join(path, file)
             loader = UnstructuredPDFLoader(filepath)
             documents = loader.load()
-            text_splitter = CharacterTextSplitter(chunk_size=1024, chunk_overlap=200)
+            text_splitter = CharacterTextSplitter(chunk_size=18000, chunk_overlap=200)
             docs = text_splitter.split_documents(documents)
             pdf_loader.extend(docs)
     return pdf_loader
