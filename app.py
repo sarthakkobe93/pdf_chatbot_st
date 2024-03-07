@@ -7,9 +7,9 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from langchain_community.llms import Together
 from langchain_community.document_loaders import UnstructuredPDFLoader
-from langchain.text_splitter import CharacterTextSplitter
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
-
+from langchain import hub
 os.environ["TOGETHER_API_KEY"] = "ee454dd5ff4e46d1ee8bf44fa387a44dd2ded119a65b933883beb6b7736c07bb"
 
 
@@ -28,16 +28,16 @@ def create_chain(retriever, prompt, model):
         | StrOutputParser()
     )
     return chain
+prompt = hub.pull("rlm/rag-prompt")
 
-
-def generate_prompt():
-    """Define the prompt template for question answering."""
-    template = """<s>[INST] Answer the question in a simple sentence based only on the following context:
-                  {context}
-                  Question: {question} [/INST] 
-                  If you don't know the answer. Please reply I dont know the answer to this question.
-               """
-    return ChatPromptTemplate.from_template(template)
+#def generate_prompt():
+   # """Define the prompt template for question answering."""
+    #template = """<s>[INST] Answer the question in a simple sentence based only on the following context:
+                 # {context}
+                 # Question: {question} [/INST] 
+                 # If you don't know the answer. Please reply I dont know the answer to this question.
+              # """
+    #return ChatPromptTemplate.from_template(template)
 
 
 def configure_model():
@@ -45,10 +45,7 @@ def configure_model():
     return Together(
         model="mistralai/Mixtral-8x7B-Instruct-v0.1",
         temperature=0.0,
-        max_tokens=3000,
-        top_k=50,
-        top_p=0.7,
-        repetition_penalty=1.1,
+        max_tokens=4096,
     )
 
 
@@ -67,7 +64,7 @@ def load_documents(path):
             filepath = os.path.join(path, file)
             loader = UnstructuredPDFLoader(filepath)
             documents = loader.load()
-            text_splitter = CharacterTextSplitter(chunk_size=18000, chunk_overlap=200)
+            text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
             docs = text_splitter.split_documents(documents)
             pdf_loader.extend(docs)
     return pdf_loader
@@ -77,7 +74,7 @@ def process_document(path, input_query):
     """Process the document by setting up the chain and invoking it with the input query."""
     pdf_loader = load_documents(path)
     llm_model = configure_model()
-    prompt = generate_prompt()
+    prompt = prompt
     retriever = configure_retriever(pdf_loader)
     chain = create_chain(retriever, prompt, llm_model)
     response = inference(chain, input_query)
