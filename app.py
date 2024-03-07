@@ -77,7 +77,7 @@ def process_document(path, input_query):
     """Process the document by setting up the chain and invoking it with the input query."""
     pdf_loader = load_documents(path)
     llm_model = configure_model()
-    prompt = prompt
+    prompt
     retriever = configure_retriever(pdf_loader)
     chain = create_chain(retriever, prompt, llm_model)
     response = inference(chain, input_query)
