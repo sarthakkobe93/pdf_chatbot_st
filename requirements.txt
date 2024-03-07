@@ -4,7 +4,7 @@ langchain-core
 langchain-community
 faiss-cpu
 tiktoken
-unstructured
+unstructured==0.5.6
 #protobuf
 pillow_heif
 unstructured_inference
@@ -13,7 +13,7 @@ pypdf
 sentence-transformers
 #opencv-python
 #skia-python
-tesseract
-tesseract-ocr
-poppler-utils
-python-libmagic
+#tesseract
+#tesseract-ocr
+#poppler-utils
+#python-libmagic
