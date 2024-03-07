@@ -4,13 +4,13 @@ langchain-core
 langchain-community
 faiss-cpu
 tiktoken
-unstructured
+unstructured[all-docs]
 #protobuf
 pillow_heif
 unstructured_inference
 pikepdf
 pypdf
 sentence-transformers
-opencv-python
+#opencv-python
 #skia-python
 
