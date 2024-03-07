@@ -1,0 +1,12 @@
+langchain
+langchain-together
+langchain-core
+langchain-community
+faiss-cpu
+tiktoken
+unstructured
+pillow_heif
+unstructured_inference
+pikepdf
+pypdf
+sentence-transformers
