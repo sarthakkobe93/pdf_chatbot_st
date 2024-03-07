@@ -29,8 +29,9 @@ def create_chain(retriever, prompt, model):
     )
     return chain
 
-prompt = hub.pull("rlm/rag-prompt")
 global prompt
+prompt = hub.pull("rlm/rag-prompt")
+
 
 #def generate_prompt():
    # """Define the prompt template for question answering."""
