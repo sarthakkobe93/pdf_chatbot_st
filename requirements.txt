@@ -1,4 +1,5 @@
 langchain
+langchainhub
 langchain-together
 langchain-core
 langchain-community
