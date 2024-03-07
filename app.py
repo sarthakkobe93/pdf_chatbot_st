@@ -35,6 +35,7 @@ def generate_prompt():
     template = """<s>[INST] Answer the question in a simple sentence based only on the following context:
                   {context}
                   Question: {question} [/INST] 
+                  If you don't know the answer. Please reply I dont know the answer to this question.
                """
     return ChatPromptTemplate.from_template(template)
 
