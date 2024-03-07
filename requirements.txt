@@ -11,4 +11,4 @@ unstructured_inference
 pikepdf
 pypdf
 sentence-transformers
-opencv-python
+
