@@ -38,7 +38,6 @@ def generate_prompt():
     template = """You are an assistant for question-answering tasks. 
     Use the following pieces of retrieved context to answer the question. 
     If you don't know the answer, just say that you don't know. 
-    Use four sentences maximum and keep the answer concise.
     \nQuestion: {question} \nContext: {context} \nAnswer:
                """
     return ChatPromptTemplate.from_template(template)
