@@ -11,4 +11,5 @@ unstructured_inference
 pikepdf
 pypdf
 sentence-transformers
+libgl1
 
