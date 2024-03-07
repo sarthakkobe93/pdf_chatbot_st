@@ -29,18 +29,19 @@ def create_chain(retriever, prompt, model):
     )
     return chain
 
-global prompt
-prompt = hub.pull("rlm/rag-prompt")
+#global prompt
+#prompt = hub.pull("rlm/rag-prompt")
 
 
-#def generate_prompt():
-   # """Define the prompt template for question answering."""
-    #template = """<s>[INST] Answer the question in a simple sentence based only on the following context:
-                 # {context}
-                 # Question: {question} [/INST] 
-                 # If you don't know the answer. Please reply I dont know the answer to this question.
-              # """
-    #return ChatPromptTemplate.from_template(template)
+def generate_prompt():
+    """Define the prompt template for question answering."""
+    template = """You are an assistant for question-answering tasks. 
+    Use the following pieces of retrieved context to answer the question. 
+    If you don't know the answer, just say that you don't know. 
+    Use four sentences maximum and keep the answer concise.
+    \nQuestion: {question} \nContext: {context} \nAnswer:
+               """
+    return ChatPromptTemplate.from_template(template)
 
 
 def configure_model():
@@ -77,7 +78,7 @@ def process_document(path, input_query):
     """Process the document by setting up the chain and invoking it with the input query."""
     pdf_loader = load_documents(path)
     llm_model = configure_model()
-    prompt
+    prompt=generate_prompt()
     retriever = configure_retriever(pdf_loader)
     chain = create_chain(retriever, prompt, llm_model)
     response = inference(chain, input_query)
