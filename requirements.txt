@@ -5,6 +5,7 @@ langchain-community
 faiss-cpu
 tiktoken
 unstructured
+protobuf
 pillow_heif
 unstructured_inference
 pikepdf
