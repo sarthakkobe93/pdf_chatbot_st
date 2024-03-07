@@ -4,7 +4,7 @@ langchain-core
 langchain-community
 faiss-cpu
 tiktoken
-unstructured[all-docs]
+unstructured==0.5.6
 #protobuf
 pillow_heif
 unstructured_inference
