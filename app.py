@@ -65,7 +65,7 @@ def load_documents(path):
     for file in os.listdir(path):
         if file.endswith('.pdf'):
             filepath = os.path.join(path, file)
-            loader = UnstructuredPDFLoader(filepath)
+            loader = UnstructuredPDFLoader(filepath,strategy="fast")
             documents = loader.load()
             text_splitter = RecursiveCharacterTextSplitter(chunk_size=2048, chunk_overlap=200)
             docs = text_splitter.split_documents(documents)
